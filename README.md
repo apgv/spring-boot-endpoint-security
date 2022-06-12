@@ -1,6 +1,6 @@
 # spring-boot-endpoint-security
-Example of how to ensure by unit test that every web endpoint in a Spring Boot web application is secured with Spring Security 
-using annotations.
+Example of how to ensure with a [unit test](src/test/java/no/elme/example/AllHttpEndpointsAreSecuredTest.java) 
+that every web endpoint in a Spring Boot web application is secured with Spring Security using annotations.
 Libraries used:
 * Spring Boot
   * Spring Security
