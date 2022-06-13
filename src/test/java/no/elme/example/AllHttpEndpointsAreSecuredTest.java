@@ -3,7 +3,7 @@ package no.elme.example;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfo;
 import io.github.classgraph.MethodInfo;
-import no.elme.example.controller.NoAuthorizationNeeded;
+import no.elme.example.controller.NoAuthorizationRequired;
 import no.elme.example.controller.OneController;
 import no.elme.example.controller.sub.AnotherControllerInSubPackage;
 import org.junit.jupiter.api.Test;
@@ -40,7 +40,7 @@ class AllHttpEndpointsAreSecuredTest {
             controllerClasses.forEach(classInfo -> {
                 Set<String> collect = classInfo.getDeclaredMethodInfo().stream()
                         .filter(methodInfo -> methodInfo.hasAnnotation(RequestMapping.class))
-                        .filter(methodInfo -> !methodInfo.hasAnnotation(NoAuthorizationNeeded.class))
+                        .filter(methodInfo -> !methodInfo.hasAnnotation(NoAuthorizationRequired.class))
                         .filter(methodInfo -> !methodInfo.hasAnnotation(PreAuthorize.class))
                         .map(this::classNameAndMethodName)
                         .collect(Collectors.toSet());

@@ -9,4 +9,4 @@ Libraries used:
 * AssertJ
 
 The `@PreAuthorize` annotation from Spring Security is used in the examples to secure an endpoint.
-The custom `@NoAuthorizationNeeded` annotation is used in the examples to tell an endpoint is not secured on purpose.
+The custom `@NoAuthorizationRequired` annotation is used in the examples to tell an endpoint is not secured on purpose.

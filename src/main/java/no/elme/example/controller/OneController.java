@@ -13,7 +13,7 @@ public class OneController {
     }
 
     @GetMapping(path = "endpoint-open-to-all")
-    @NoAuthorizationNeeded
+    @NoAuthorizationRequired
     public void getEndpointOpenToAll() {
         //ignore
     }

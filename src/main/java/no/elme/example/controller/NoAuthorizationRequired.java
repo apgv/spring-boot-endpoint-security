@@ -6,5 +6,5 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Inherited
-public @interface NoAuthorizationNeeded {
+public @interface NoAuthorizationRequired {
 }
