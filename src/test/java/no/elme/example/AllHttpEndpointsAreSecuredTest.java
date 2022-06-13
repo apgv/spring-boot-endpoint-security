@@ -20,7 +20,7 @@ class AllHttpEndpointsAreSecuredTest {
     private static final String SCAN_PACKAGES_INCLUDING_SUB_PACKAGES = "no.elme.example";
 
     @Test
-    void verifyAllEndpointsAreSecured() {
+    void verifyAllHttpEndpointsAreSecured() {
         try (var scanResult = new ClassGraph()
                 .acceptPackages(SCAN_PACKAGES_INCLUDING_SUB_PACKAGES)
                 .enableAllInfo()
