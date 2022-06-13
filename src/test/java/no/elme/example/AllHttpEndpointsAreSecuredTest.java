@@ -1,8 +1,6 @@
 package no.elme.example;
 
-import io.github.classgraph.ClassGraph;
-import io.github.classgraph.ClassInfo;
-import io.github.classgraph.MethodInfo;
+import io.github.classgraph.*;
 import no.elme.example.controller.NoAuthorizationRequired;
 import no.elme.example.controller.OneController;
 import no.elme.example.controller.sub.AnotherControllerInSubPackage;
@@ -27,12 +25,12 @@ class AllHttpEndpointsAreSecuredTest {
                 .acceptPackages(SCAN_PACKAGES_INCLUDING_SUB_PACKAGES)
                 .enableAllInfo()
                 .scan()) {
-            var controllerClasses = scanResult.getClassesWithAnnotation(Controller.class);
+            final var controllerClasses = findControllers(scanResult);
             assertThat(controllerClasses)
-                    .extracting(ClassInfo::getSimpleName)
-                    .contains(
-                            OneController.class.getSimpleName(),
-                            AnotherControllerInSubPackage.class.getSimpleName()
+                    .extracting(ClassInfo::getName)
+                    .containsOnly(
+                            OneController.class.getName(),
+                            AnotherControllerInSubPackage.class.getName()
                     );
 
             var endpointsMissingProtection = new ArrayList<String>();
@@ -60,6 +58,11 @@ class AllHttpEndpointsAreSecuredTest {
                     classNameAndMethodName(AnotherControllerInSubPackage.class, "getEndpointMissingSecurity")
             );
         }
+    }
+
+    private ClassInfoList findControllers(final ScanResult scanResult) {
+        return scanResult.getClassesWithAnnotation(Controller.class)
+                .filter(classInfo -> classInfo.getPackageName().startsWith(SCAN_PACKAGES_INCLUDING_SUB_PACKAGES));
     }
 
     private String classNameAndMethodName(final MethodInfo methodInfo) {
