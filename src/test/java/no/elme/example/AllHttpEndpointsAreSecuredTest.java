@@ -21,7 +21,7 @@ class AllHttpEndpointsAreSecuredTest {
 
     @Test
     void verifyAllHttpEndpointsAreSecured() {
-        try (var scanResult = new ClassGraph()
+        try (final var scanResult = new ClassGraph()
                 .acceptPackages(SCAN_PACKAGES_INCLUDING_SUB_PACKAGES)
                 .enableAllInfo()
                 .scan()) {
@@ -33,7 +33,7 @@ class AllHttpEndpointsAreSecuredTest {
                             AnotherControllerInSubPackage.class.getName()
                     );
 
-            var endpointsMissingProtection = new ArrayList<String>();
+            final var endpointsMissingProtection = new ArrayList<String>();
 
             controllerClasses.forEach(classInfo -> {
                 Set<String> collect = classInfo.getDeclaredMethodInfo().stream()

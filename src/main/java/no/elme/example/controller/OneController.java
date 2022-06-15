@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "api")
 public class OneController {
+
     @GetMapping(path = "secured")
     @PreAuthorize("secured")
     public void securedEndpoint() {
