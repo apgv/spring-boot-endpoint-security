@@ -62,7 +62,8 @@ class AllHttpEndpointsAreSecuredTest {
 
     private ClassInfoList findControllers(final ScanResult scanResult) {
         return scanResult.getClassesWithAnnotation(Controller.class)
-                .filter(classInfo -> classInfo.getPackageName().startsWith(SCAN_PACKAGES_INCLUDING_SUB_PACKAGES));
+                .filter(classInfo -> classInfo.getPackageName().startsWith(SCAN_PACKAGES_INCLUDING_SUB_PACKAGES) &&
+                        !classInfo.getClasspathElementURI().toString().endsWith("test-classes/"));
     }
 
     private String classNameAndMethodName(final MethodInfo methodInfo) {
